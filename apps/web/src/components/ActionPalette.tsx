@@ -4,6 +4,12 @@ import React, { useState } from 'react';
 import { useGameStore } from '../store/gameStore';
 import { ActionAdapter } from '../lib/game/actionAdapter';
 import type { Species, Direction } from '@entropy-garden/engine';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Separator } from '@/components/ui/separator';
 
 export const ActionPalette: React.FC = () => {
   const { gameState, selectAction, commitAction, clearPreview } = useGameStore();
@@ -44,129 +50,119 @@ export const ActionPalette: React.FC = () => {
   };
 
   return (
-    <div className="bg-white p-4 rounded-lg shadow-lg">
-      <h3 className="text-lg font-bold mb-4">Actions</h3>
-
-      {/* Position selector */}
-      <div className="mb-4">
-        <label className="block text-sm font-medium mb-2">Target Position</label>
-        <div className="flex gap-2">
-          <input
-            type="number"
-            value={selectedX}
-            onChange={(e) => setSelectedX(Number(e.target.value))}
-            className="w-16 px-2 py-1 border rounded"
-            min="0"
-            max="6"
-          />
-          <input
-            type="number"
-            value={selectedY}
-            onChange={(e) => setSelectedY(Number(e.target.value))}
-            className="w-16 px-2 py-1 border rounded"
-            min="0"
-            max="6"
-          />
+    <Card>
+      <CardHeader>
+        <CardTitle>Actions</CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        {/* Position selector */}
+        <div className="space-y-2">
+          <Label>Target Position</Label>
+          <div className="flex gap-2">
+            <Input
+              type="number"
+              value={selectedX}
+              onChange={(e) => setSelectedX(Number(e.target.value))}
+              className="w-20"
+              min="0"
+              max="6"
+            />
+            <Input
+              type="number"
+              value={selectedY}
+              onChange={(e) => setSelectedY(Number(e.target.value))}
+              className="w-20"
+              min="0"
+              max="6"
+            />
+          </div>
         </div>
-      </div>
 
-      {/* Seed Species */}
-      <div className="mb-4">
-        <label className="block text-sm font-medium mb-2">Seed Species</label>
-        <select
-          value={selectedSpecies}
-          onChange={(e) => setSelectedSpecies(e.target.value as Species)}
-          className="mr-2 px-2 py-1 border rounded"
-        >
-          <option value="ROOT">Root</option>
-          <option value="SPREAD">Spread</option>
-          <option value="MUTATION">Mutation</option>
-        </select>
-        <button
-          onClick={handleSeedSpecies}
-          className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
-        >
-          Seed
-        </button>
-      </div>
+        <Separator />
 
-      {/* Manipulate Environment */}
-      <div className="mb-4">
-        <label className="block text-sm font-medium mb-2">Manipulate Environment</label>
-        <div className="flex gap-2">
-          <button
-            onClick={() => handleManipulateEnv('N', 1)}
-            className="px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600"
-          >
-            +Nutrient
-          </button>
-          <button
-            onClick={() => handleManipulateEnv('N', -1)}
-            className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600"
-          >
-            -Nutrient
-          </button>
-          <button
-            onClick={() => handleManipulateEnv('M', 1)}
-            className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600"
-          >
-            +Moisture
-          </button>
-          <button
-            onClick={() => handleManipulateEnv('M', -1)}
-            className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600"
-          >
-            -Moisture
-          </button>
+        {/* Seed Species */}
+        <div className="space-y-2">
+          <Label>Seed Species</Label>
+          <div className="flex gap-2">
+            <Select value={selectedSpecies} onValueChange={(val) => setSelectedSpecies(val as Species)}>
+              <SelectTrigger className="w-[180px]">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="ROOT">Root</SelectItem>
+                <SelectItem value="SPREAD">Spread</SelectItem>
+                <SelectItem value="MUTATION">Mutation</SelectItem>
+              </SelectContent>
+            </Select>
+            <Button onClick={handleSeedSpecies} variant="default">
+              Seed
+            </Button>
+          </div>
         </div>
-      </div>
 
-      {/* Mutate */}
-      <div className="mb-4">
-        <label className="block text-sm font-medium mb-2">Mutate</label>
-        <select
-          value={selectedDirection}
-          onChange={(e) => setSelectedDirection(e.target.value as Direction)}
-          className="mr-2 px-2 py-1 border rounded"
-        >
-          <option value="N">North</option>
-          <option value="E">East</option>
-          <option value="S">South</option>
-          <option value="W">West</option>
-        </select>
-        <button
-          onClick={handleMutate}
-          className="px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600"
-        >
-          Mutate
-        </button>
-      </div>
+        <Separator />
 
-      {/* End Turn */}
-      <div className="mb-4">
-        <button
-          onClick={handleEndTurn}
-          className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
-        >
+        {/* Manipulate Environment */}
+        <div className="space-y-2">
+          <Label>Manipulate Environment</Label>
+          <div className="grid grid-cols-2 gap-2">
+            <Button onClick={() => handleManipulateEnv('N', 1)} variant="default" size="sm">
+              +Nutrient
+            </Button>
+            <Button onClick={() => handleManipulateEnv('N', -1)} variant="destructive" size="sm">
+              -Nutrient
+            </Button>
+            <Button onClick={() => handleManipulateEnv('M', 1)} variant="default" size="sm">
+              +Moisture
+            </Button>
+            <Button onClick={() => handleManipulateEnv('M', -1)} variant="destructive" size="sm">
+              -Moisture
+            </Button>
+          </div>
+        </div>
+
+        <Separator />
+
+        {/* Mutate */}
+        <div className="space-y-2">
+          <Label>Mutate</Label>
+          <div className="flex gap-2">
+            <Select value={selectedDirection} onValueChange={(val) => setSelectedDirection(val as Direction)}>
+              <SelectTrigger className="w-[180px]">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="N">North</SelectItem>
+                <SelectItem value="E">East</SelectItem>
+                <SelectItem value="S">South</SelectItem>
+                <SelectItem value="W">West</SelectItem>
+              </SelectContent>
+            </Select>
+            <Button onClick={handleMutate} variant="secondary">
+              Mutate
+            </Button>
+          </div>
+        </div>
+
+        <Separator />
+
+        {/* End Turn */}
+        <Button onClick={handleEndTurn} variant="outline" className="w-full">
           End Turn
-        </button>
-      </div>
+        </Button>
 
-      {/* Commit/Clear */}
-      <div className="flex gap-2">
-        <button
-          onClick={handleCommit}
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-        >
-          Commit Action
-        </button>
-        <button
-          onClick={handleClear}
-          className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
-        >
-          Clear Preview
-        </button>
-      </div>
-    </div>
+        <Separator />
+
+        {/* Commit/Clear */}
+        <div className="flex gap-2">
+          <Button onClick={handleCommit} className="flex-1">
+            Commit Action
+          </Button>
+          <Button onClick={handleClear} variant="outline" className="flex-1">
+            Clear Preview
+          </Button>
+        </div>
+      </CardContent>
+    </Card>
   );
 };

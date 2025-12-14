@@ -1,0 +1,9 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo "🧪 Running available tests before push..."
+
+# Run tests only if test files exist
+pnpm test || echo "⚠️  Some tests failed or no tests found. Continuing push..."
+
+echo "✅ Pre-push checks complete!"

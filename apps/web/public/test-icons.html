@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Icon Test</title>
+    <style>
+        body { background: #1e293b; color: white; padding: 40px; font-family: sans-serif; }
+        .test-grid { display: grid; grid-template-columns: repeat(3, 200px); gap: 20px; margin-top: 20px; }
+        .test-item { border: 1px solid #444; padding: 20px; text-align: center; }
+        img { width: 100px; height: 100px; object-fit: contain; }
+        .icon-player-0 { filter: drop-shadow(0 0 8px rgb(34, 197, 94)); }
+        .icon-player-1 { filter: drop-shadow(0 0 8px rgb(239, 68, 68)); }
+    </style>
+</head>
+<body>
+    <h1>🎨 Species Icon Test (PNG)</h1>
+    <p>Testing if PNG files load correctly with color glows...</p>
+    
+    <div class="test-grid">
+        <div class="test-item">
+            <h3>Root (Player 0)</h3>
+            <img src="/images/root.png" alt="Root" class="icon-player-0" />
+            <p style="color: #22c55e;">✅ /images/root.png</p>
+        </div>
+        
+        <div class="test-item">
+            <h3>Spread (Player 1)</h3>
+            <img src="/images/spread.png" alt="Spread" class="icon-player-1" />
+            <p style="color: #ef4444;">✅ /images/spread.png</p>
+        </div>
+        
+        <div class="test-item">
+            <h3>Mutation (Neutral)</h3>
+            <img src="/images/mutation.png" alt="Mutation" />
+            <p>✅ /images/mutation.png</p>
+        </div>
+    </div>
+    
+    <div style="margin-top: 40px; padding: 20px; border: 1px solid #444; background: #0f172a;">
+        <h2>✅ Expected Results:</h2>
+        <ul>
+            <li>✅ All 3 PNG images should load</li>
+            <li>✅ Root has green glow</li>
+            <li>✅ Spread has red glow</li>
+            <li>✅ Mutation has no glow</li>
+        </ul>
+        
+        <h3 style="margin-top: 20px;">🔗 Quick Links:</h3>
+        <a href="/" style="color: #3b82f6;">← Back to Main App</a>
+    </div>
+</body>
+</html>
