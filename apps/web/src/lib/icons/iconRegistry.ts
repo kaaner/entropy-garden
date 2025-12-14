@@ -3,7 +3,7 @@
  * Central mapping for species icons
  */
 
-export type SpeciesType = 'ROOT' | 'SPREAD' | 'MUTATION';
+export type SpeciesType = 'ROOT' | 'SPREAD' | 'MUTATION' | 'N2' | 'M2';
 
 export interface IconAsset {
   png: string;
@@ -22,6 +22,14 @@ const ICON_REGISTRY: Record<SpeciesType, IconAsset> = {
   MUTATION: {
     png: '/images/mutation.png',
     label: 'Mutation Species',
+  },
+  N2: {
+    png: '/images/n2.png',
+    label: 'Nutrition Type 2',
+  },
+  M2: {
+    png: '/images/m2.png',
+    label: 'Metabolism Type 2',
   },
 };
 

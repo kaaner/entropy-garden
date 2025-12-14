@@ -1,0 +1,88 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- M2 - Metabolism Type 2: Energy spiral with metabolic pathways -->
+  <defs>
+    <radialGradient id="m2Glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#d97706;stop-opacity:0.3" />
+    </radialGradient>
+    <linearGradient id="m2Spiral" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fbbf24;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#f59e0b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d97706;stop-opacity:1" />
+    </linearGradient>
+    <filter id="m2Shadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="4"/>
+      <feOffset dx="0" dy="2" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.5"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Outer energy glow -->
+  <circle cx="256" cy="256" r="200" fill="url(#m2Glow)" opacity="0.4"/>
+  
+  <!-- Metabolic spiral structure -->
+  <g filter="url(#m2Shadow)">
+    <!-- Outer spiral arm 1 -->
+    <path d="M 256 96 Q 356 136 376 236 Q 386 306 336 356 Q 286 406 196 396" 
+          fill="none" stroke="url(#m2Spiral)" stroke-width="24" 
+          stroke-linecap="round" opacity="0.8"/>
+    
+    <!-- Outer spiral arm 2 -->
+    <path d="M 256 96 Q 156 136 136 236 Q 126 306 176 356 Q 226 406 316 396" 
+          fill="none" stroke="url(#m2Spiral)" stroke-width="24" 
+          stroke-linecap="round" opacity="0.8"/>
+    
+    <!-- Inner spiral -->
+    <path d="M 256 156 Q 296 176 306 216 Q 311 246 286 271 Q 261 296 226 291 Q 196 286 181 256 Q 171 231 191 206 Q 216 176 256 176" 
+          fill="none" stroke="#fbbf24" stroke-width="16" 
+          stroke-linecap="round" opacity="0.9"/>
+    
+    <!-- Energy nodes along spiral -->
+    <circle cx="256" cy="96" r="16" fill="#fcd34d" stroke="#f59e0b" stroke-width="3"/>
+    <circle cx="376" cy="236" r="14" fill="#fcd34d" stroke="#f59e0b" stroke-width="3"/>
+    <circle cx="336" cy="356" r="14" fill="#fcd34d" stroke="#f59e0b" stroke-width="3"/>
+    <circle cx="196" cy="396" r="12" fill="#fcd34d" stroke="#f59e0b" stroke-width="3"/>
+    <circle cx="136" cy="236" r="14" fill="#fcd34d" stroke="#f59e0b" stroke-width="3"/>
+    <circle cx="176" cy="356" r="14" fill="#fcd34d" stroke="#f59e0b" stroke-width="3"/>
+    
+    <!-- Central metabolic core -->
+    <circle cx="256" cy="256" r="48" fill="#f59e0b" opacity="0.9"/>
+    <circle cx="256" cy="256" r="36" fill="#fbbf24" opacity="0.9"/>
+    <circle cx="256" cy="256" r="24" fill="#fcd34d" opacity="0.9"/>
+    
+    <!-- Energy burst lines from center -->
+    <line x1="256" y1="256" x2="256" y2="208" stroke="#fef3c7" stroke-width="3" opacity="0.7"/>
+    <line x1="256" y1="256" x2="304" y2="256" stroke="#fef3c7" stroke-width="3" opacity="0.7"/>
+    <line x1="256" y1="256" x2="256" y2="304" stroke="#fef3c7" stroke-width="3" opacity="0.7"/>
+    <line x1="256" y1="256" x2="208" y2="256" stroke="#fef3c7" stroke-width="3" opacity="0.7"/>
+    
+    <!-- Diagonal energy bursts -->
+    <line x1="256" y1="256" x2="290" y2="222" stroke="#fef3c7" stroke-width="2" opacity="0.5"/>
+    <line x1="256" y1="256" x2="290" y2="290" stroke="#fef3c7" stroke-width="2" opacity="0.5"/>
+    <line x1="256" y1="256" x2="222" y2="290" stroke="#fef3c7" stroke-width="2" opacity="0.5"/>
+    <line x1="256" y1="256" x2="222" y2="222" stroke="#fef3c7" stroke-width="2" opacity="0.5"/>
+    
+    <!-- Central bright core -->
+    <circle cx="256" cy="256" r="12" fill="#fffbeb"/>
+  </g>
+  
+  <!-- Energy particles -->
+  <circle cx="326" cy="166" r="6" fill="#fcd34d" opacity="0.8">
+    <animate attributeName="opacity" values="0.8;0.3;0.8" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="186" cy="166" r="6" fill="#fcd34d" opacity="0.6">
+    <animate attributeName="opacity" values="0.6;0.2;0.6" dur="2.5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="326" cy="346" r="6" fill="#fcd34d" opacity="0.7">
+    <animate attributeName="opacity" values="0.7;0.3;0.7" dur="2.2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="186" cy="346" r="6" fill="#fcd34d" opacity="0.5">
+    <animate attributeName="opacity" values="0.5;0.2;0.5" dur="2.8s" repeatCount="indefinite"/>
+  </circle>
+</svg>

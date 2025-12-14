@@ -45,6 +45,7 @@ export function SpeciesIcon({
       role="img"
     >
       {/* Use simple img tag with PNG for reliability */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={icon.png}
         alt={icon.label}

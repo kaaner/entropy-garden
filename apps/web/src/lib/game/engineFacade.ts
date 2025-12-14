@@ -1,5 +1,6 @@
 import {
   createInitialState,
+  applyAction,
   simulate,
   getLegalActions,
   checkEnd,
@@ -18,6 +19,13 @@ export class GameEngine {
    */
   static createInitialState(): GameState {
     return createInitialState();
+  }
+
+  /**
+   * Apply an action to a game state
+   */
+  static applyAction(state: GameState, action: Action): GameState {
+    return applyAction(state, action);
   }
 
   /**

@@ -9,12 +9,15 @@
         img { width: 100px; height: 100px; object-fit: contain; }
         .icon-player-0 { filter: drop-shadow(0 0 8px rgb(34, 197, 94)); }
         .icon-player-1 { filter: drop-shadow(0 0 8px rgb(239, 68, 68)); }
+        h1 { color: #3b82f6; }
+        h2 { color: #8b5cf6; margin-top: 40px; }
     </style>
 </head>
 <body>
     <h1>🎨 Species Icon Test (PNG)</h1>
-    <p>Testing if PNG files load correctly with color glows...</p>
+    <p>Testing all species icons with color glows...</p>
     
+    <h2>Original Species (ROOT, SPREAD, MUTATION)</h2>
     <div class="test-grid">
         <div class="test-item">
             <h3>Root (Player 0)</h3>
@@ -35,13 +38,31 @@
         </div>
     </div>
     
+    <h2>New Species (N2, M2)</h2>
+    <div class="test-grid">
+        <div class="test-item">
+            <h3>N2 - Nutrition Type 2</h3>
+            <img src="/images/n2.png" alt="N2" class="icon-player-0" />
+            <p style="color: #22c55e;">✅ /images/n2.png</p>
+            <p style="font-size: 12px; opacity: 0.7;">Hexagonal nutrient cluster</p>
+        </div>
+        
+        <div class="test-item">
+            <h3>M2 - Metabolism Type 2</h3>
+            <img src="/images/m2.png" alt="M2" class="icon-player-1" />
+            <p style="color: #ef4444;">✅ /images/m2.png</p>
+            <p style="font-size: 12px; opacity: 0.7;">Energy spiral metabolic core</p>
+        </div>
+    </div>
+    
     <div style="margin-top: 40px; padding: 20px; border: 1px solid #444; background: #0f172a;">
         <h2>✅ Expected Results:</h2>
         <ul>
-            <li>✅ All 3 PNG images should load</li>
-            <li>✅ Root has green glow</li>
-            <li>✅ Spread has red glow</li>
-            <li>✅ Mutation has no glow</li>
+            <li>✅ All 5 PNG images should load</li>
+            <li>✅ Player 0 species have green glow</li>
+            <li>✅ Player 1 species have red glow</li>
+            <li>✅ N2 shows hexagonal cell cluster (green theme)</li>
+            <li>✅ M2 shows energy spiral (orange/yellow theme)</li>
         </ul>
         
         <h3 style="margin-top: 20px;">🔗 Quick Links:</h3>
