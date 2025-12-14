@@ -2,12 +2,85 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 241, 245, 249;
-  --background-rgb: 15, 23, 42;
+@layer base {
+  :root {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 142.1 76.2% 36.3%;
+    --primary-foreground: 355.7 100% 97.3%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 142.1 76.2% 36.3%;
+    --radius: 0.5rem;
+    --player-0-color: 34, 197, 94;
+    --player-1-color: 239, 68, 68;
+  }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: rgb(var(--background-rgb));
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }
+
+/* Species Icon Styling */
+.species-icon {
+  transition: all 0.2s ease;
+}
+
+.species-icon-image {
+  object-fit: contain;
+}
+
+/* Player 0 (Green tint) */
+.icon-player-0 {
+  filter: drop-shadow(0 0 4px rgb(var(--player-0-color)));
+}
+
+.icon-player-0:hover {
+  filter: drop-shadow(0 0 8px rgb(var(--player-0-color)));
+}
+
+/* Player 1 (Red tint) */
+.icon-player-1 {
+  filter: drop-shadow(0 0 4px rgb(var(--player-1-color)));
+}
+
+.icon-player-1:hover {
+  filter: drop-shadow(0 0 8px rgb(var(--player-1-color)));
+}
+
+/* Inactive species - dimmed */
+.inactive-species {
+  opacity: 0.4;
+  filter: grayscale(80%);
+}
+
+/* Accessibility - screen reader only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
