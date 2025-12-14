@@ -1,0 +1,20 @@
+{
+  "name": "entropy-garden",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev:web": "pnpm --filter @entropy-garden/web dev",
+    "dev:mobile": "pnpm --filter @entropy-garden/mobile start",
+    "build": "pnpm --filter @entropy-garden/engine build && pnpm --filter @entropy-garden/ai build && pnpm --filter @entropy-garden/web build",
+    "test": "pnpm --filter @entropy-garden/engine test && pnpm --filter @entropy-garden/ai test",
+    "lint": "pnpm -r lint"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.5",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=8.0.0"
+  }
+}
