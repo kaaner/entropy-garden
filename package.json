@@ -1,6 +1,6 @@
 {
   "name": "entropy-garden",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev:web": "pnpm --filter @entropy-garden/web dev",
