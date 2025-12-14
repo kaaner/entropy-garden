@@ -1,0 +1,14 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo "🧪 Running full test suite before push..."
+
+# Run all tests
+pnpm test
+
+if [ $? -ne 0 ]; then
+  echo "❌ Tests failed! Fix them before pushing."
+  exit 1
+fi
+
+echo "✅ All tests passed!"
