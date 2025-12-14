@@ -10,20 +10,26 @@ interface LogPanelProps {
 
 export const LogPanel: React.FC<LogPanelProps> = ({ logs }) => {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Event Log</CardTitle>
+    <Card className="enhanced-card border-0">
+      <CardHeader className="pb-3">
+        <CardTitle className="text-lg">📜 Event Log</CardTitle>
       </CardHeader>
       <CardContent>
-        <ScrollArea className="h-[300px] w-full rounded-md border p-4">
+        <ScrollArea className="h-80 w-full rounded-lg border border-muted/50 bg-muted/20 p-4">
           {logs.length === 0 ? (
-            <p className="text-sm text-muted-foreground italic">No events yet</p>
+            <div className="flex items-center justify-center h-full">
+              <p className="text-muted-foreground italic">No events yet</p>
+            </div>
           ) : (
-            <div className="space-y-1">
+            <div className="space-y-2">
               {logs.map((log, index) => (
-                <p key={index} className="text-sm font-mono">
-                  <span className="text-muted-foreground">[{index}]</span> {log}
-                </p>
+                <div
+                  key={index}
+                  className="font-mono text-xs text-foreground/90 p-2 rounded bg-background/50 hover:bg-background/80 transition-colors border border-muted/30"
+                >
+                  <span className="text-muted-foreground mr-2">[{index + 1}]</span>
+                  {log}
+                </div>
               ))}
             </div>
           )}

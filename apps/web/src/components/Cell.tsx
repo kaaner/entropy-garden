@@ -20,32 +20,33 @@ export const Cell: React.FC<CellProps> = ({ cell, x, y, onClick, isPreview }) =>
 
   return (
     <div
-      className={`w-16 h-16 border border-gray-300 flex flex-col items-center justify-center text-xs cursor-pointer transition-all hover:bg-gray-50 ${
-        isPreview ? 'ring-2 ring-yellow-400 bg-yellow-50' : ''
+      className={`cell aspect-square flex flex-col items-center justify-between p-2 cursor-pointer rounded-lg ${
+        isPreview ? 'cell-preview' : ''
       }`}
       onClick={handleClick}
+      title={`Position: (${x}, ${y})`}
     >
       {/* Nutrient (top) */}
-      <div className="text-green-600 text-[10px] font-semibold">N{cell.nutrient}</div>
+      <div className="nutrient-indicator text-xs font-bold tracking-wide">
+        N{cell.nutrient}
+      </div>
 
       {/* Occupant (center - with icon) */}
-      {cell.occupant && (
-        <div
-          className={`flex items-center justify-center ${
-            cell.occupant.active ? '' : 'opacity-40 grayscale'
-          }`}
-        >
+      <div className="flex-1 flex items-center justify-center">
+        {cell.occupant && (
           <SpeciesIcon
             species={cell.occupant.species as SpeciesType}
             ownerId={cell.occupant.ownerId}
-            size={28}
+            size={32}
             className={cell.occupant.active ? '' : 'inactive-species'}
           />
-        </div>
-      )}
+        )}
+      </div>
 
       {/* Moisture (bottom) */}
-      <div className="text-blue-600 text-[10px] font-semibold">M{cell.moisture}</div>
+      <div className="moisture-indicator text-xs font-bold tracking-wide">
+        M{cell.moisture}
+      </div>
     </div>
   );
 };

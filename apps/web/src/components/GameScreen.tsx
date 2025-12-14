@@ -27,31 +27,36 @@ export const GameScreen: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen p-4 md:p-8">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen p-4 md:p-6 lg:p-8">
+      <div className="max-w-[1920px] mx-auto">
         <header className="mb-8">
-          <div className="flex items-center justify-between mb-4">
-            <h1 className="text-4xl font-bold tracking-tight">
-              🌱 Entropy Garden
-            </h1>
-            <Button onClick={handleNewGame} size="lg">
-              New Game
+          <div className="flex items-center justify-between mb-6">
+            <div>
+              <h1 className="text-5xl font-bold tracking-tight bg-gradient-to-r from-green-400 via-emerald-500 to-teal-500 bg-clip-text text-transparent mb-2">
+                🌱 Entropy Garden
+              </h1>
+              <p className="text-muted-foreground text-lg">
+                Strategic evolution • Seed, spread, and mutate to dominate
+              </p>
+            </div>
+            <Button onClick={handleNewGame} size="lg" className="h-12 px-8 text-base">
+              🎮 New Game
             </Button>
           </div>
-          <p className="text-muted-foreground">
-            Strategic PvE game - Seed, spread, and mutate to dominate the board
-          </p>
-          <Separator className="mt-4" />
+          <Separator className="bg-gradient-to-r from-transparent via-border to-transparent" />
         </header>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Game Board */}
-          <div className="lg:col-span-2 space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle>Game Board</CardTitle>
+        <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
+          {/* Game Board Section */}
+          <div className="xl:col-span-2 space-y-6">
+            <Card className="enhanced-card border-0">
+              <CardHeader className="pb-4">
+                <CardTitle className="text-2xl flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                  Game Board
+                </CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className="p-6">
                 <BoardGrid
                   gameState={gameState}
                   previewState={previewState}
@@ -60,15 +65,19 @@ export const GameScreen: React.FC = () => {
             </Card>
 
             {/* Debug Tools */}
-            <Tabs defaultValue="logs">
-              <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="logs">Event Log</TabsTrigger>
-                <TabsTrigger value="state">State Viewer</TabsTrigger>
+            <Tabs defaultValue="logs" className="w-full">
+              <TabsList className="grid w-full grid-cols-2 bg-muted/50">
+                <TabsTrigger value="logs" className="data-[state=active]:bg-primary/20">
+                  📜 Event Log
+                </TabsTrigger>
+                <TabsTrigger value="state" className="data-[state=active]:bg-primary/20">
+                  🔍 State Viewer
+                </TabsTrigger>
               </TabsList>
-              <TabsContent value="logs">
+              <TabsContent value="logs" className="mt-4">
                 <LogPanel logs={logs} />
               </TabsContent>
-              <TabsContent value="state">
+              <TabsContent value="state" className="mt-4">
                 <StateViewer gameState={gameState} previewState={previewState} />
               </TabsContent>
             </Tabs>

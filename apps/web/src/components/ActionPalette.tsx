@@ -10,6 +10,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Separator } from '@/components/ui/separator';
+import { SpeciesIcon } from './Icons';
 
 export const ActionPalette: React.FC = () => {
   const { gameState, selectAction, commitAction, clearPreview } = useGameStore();
@@ -50,116 +51,144 @@ export const ActionPalette: React.FC = () => {
   };
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Actions</CardTitle>
+    <Card className="enhanced-card border-0">
+      <CardHeader className="pb-4">
+        <CardTitle className="text-xl flex items-center gap-2">
+          ⚡ Action Palette
+        </CardTitle>
       </CardHeader>
-      <CardContent className="space-y-4">
+      <CardContent className="space-y-5">
         {/* Position selector */}
-        <div className="space-y-2">
-          <Label>Target Position</Label>
-          <div className="flex gap-2">
-            <Input
-              type="number"
-              value={selectedX}
-              onChange={(e) => setSelectedX(Number(e.target.value))}
-              className="w-20"
-              min="0"
-              max="6"
-            />
-            <Input
-              type="number"
-              value={selectedY}
-              onChange={(e) => setSelectedY(Number(e.target.value))}
-              className="w-20"
-              min="0"
-              max="6"
-            />
+        <div className="space-y-3">
+          <Label className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">
+            📍 Target Position
+          </Label>
+          <div className="flex gap-3">
+            <div className="flex-1">
+              <Input
+                type="number"
+                value={selectedX}
+                onChange={(e) => setSelectedX(Number(e.target.value))}
+                placeholder="X"
+                className="bg-muted/30 border-muted"
+                min="0"
+                max="6"
+              />
+            </div>
+            <div className="flex-1">
+              <Input
+                type="number"
+                value={selectedY}
+                onChange={(e) => setSelectedY(Number(e.target.value))}
+                placeholder="Y"
+                className="bg-muted/30 border-muted"
+                min="0"
+                max="6"
+              />
+            </div>
           </div>
+          <p className="text-xs text-muted-foreground">Position: ({selectedX}, {selectedY})</p>
         </div>
 
-        <Separator />
+        <Separator className="bg-muted/50" />
 
         {/* Seed Species */}
-        <div className="space-y-2">
-          <Label>Seed Species</Label>
-          <div className="flex gap-2">
-            <Select value={selectedSpecies} onValueChange={(val) => setSelectedSpecies(val as Species)}>
-              <SelectTrigger className="w-[180px]">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="ROOT">Root</SelectItem>
-                <SelectItem value="SPREAD">Spread</SelectItem>
-                <SelectItem value="MUTATION">Mutation</SelectItem>
-              </SelectContent>
-            </Select>
-            <Button onClick={handleSeedSpecies} variant="default">
-              Seed
-            </Button>
+        <div className="space-y-3">
+          <Label className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">
+            🌱 Seed Species
+          </Label>
+          <div className="grid grid-cols-3 gap-2 mb-3">
+            {(['ROOT', 'SPREAD', 'MUTATION'] as Species[]).map((species) => (
+              <button
+                key={species}
+                onClick={() => setSelectedSpecies(species)}
+                className={`p-3 rounded-lg border-2 transition-all ${
+                  selectedSpecies === species
+                    ? 'border-primary bg-primary/20 shadow-lg shadow-primary/20'
+                    : 'border-muted bg-muted/20 hover:border-muted-foreground/30'
+                }`}
+              >
+                <SpeciesIcon species={species as any} size={32} className="mx-auto" />
+                <p className="text-xs mt-1 font-medium">{species}</p>
+              </button>
+            ))}
           </div>
+          <Button onClick={handleSeedSpecies} variant="default" className="w-full" size="lg">
+            🌱 Seed {selectedSpecies}
+          </Button>
         </div>
 
-        <Separator />
+        <Separator className="bg-muted/50" />
 
         {/* Manipulate Environment */}
-        <div className="space-y-2">
-          <Label>Manipulate Environment</Label>
+        <div className="space-y-3">
+          <Label className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">
+            🌍 Environment
+          </Label>
           <div className="grid grid-cols-2 gap-2">
-            <Button onClick={() => handleManipulateEnv('N', 1)} variant="default" size="sm">
-              +Nutrient
+            <Button onClick={() => handleManipulateEnv('N', 1)} variant="default" size="sm" className="bg-emerald-600 hover:bg-emerald-700">
+              +N
             </Button>
             <Button onClick={() => handleManipulateEnv('N', -1)} variant="destructive" size="sm">
-              -Nutrient
+              -N
             </Button>
-            <Button onClick={() => handleManipulateEnv('M', 1)} variant="default" size="sm">
-              +Moisture
+            <Button onClick={() => handleManipulateEnv('M', 1)} variant="default" size="sm" className="bg-sky-600 hover:bg-sky-700">
+              +M
             </Button>
             <Button onClick={() => handleManipulateEnv('M', -1)} variant="destructive" size="sm">
-              -Moisture
+              -M
             </Button>
           </div>
         </div>
 
-        <Separator />
+        <Separator className="bg-muted/50" />
 
         {/* Mutate */}
-        <div className="space-y-2">
-          <Label>Mutate</Label>
-          <div className="flex gap-2">
-            <Select value={selectedDirection} onValueChange={(val) => setSelectedDirection(val as Direction)}>
-              <SelectTrigger className="w-[180px]">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="N">North</SelectItem>
-                <SelectItem value="E">East</SelectItem>
-                <SelectItem value="S">South</SelectItem>
-                <SelectItem value="W">West</SelectItem>
-              </SelectContent>
-            </Select>
-            <Button onClick={handleMutate} variant="secondary">
-              Mutate
-            </Button>
+        <div className="space-y-3">
+          <Label className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">
+            🧬 Mutate Direction
+          </Label>
+          <div className="grid grid-cols-4 gap-2 mb-3">
+            {(['N', 'E', 'S', 'W'] as Direction[]).map((dir) => (
+              <button
+                key={dir}
+                onClick={() => setSelectedDirection(dir)}
+                className={`p-3 rounded-lg border-2 transition-all ${
+                  selectedDirection === dir
+                    ? 'border-primary bg-primary/20'
+                    : 'border-muted bg-muted/20 hover:border-muted-foreground/30'
+                }`}
+              >
+                <span className="text-lg font-bold">
+                  {dir === 'N' && '↑'}
+                  {dir === 'E' && '→'}
+                  {dir === 'S' && '↓'}
+                  {dir === 'W' && '←'}
+                </span>
+              </button>
+            ))}
           </div>
+          <Button onClick={handleMutate} variant="secondary" className="w-full" size="lg">
+            🧬 Mutate {selectedDirection}
+          </Button>
         </div>
 
-        <Separator />
+        <Separator className="bg-muted/50" />
 
         {/* End Turn */}
-        <Button onClick={handleEndTurn} variant="outline" className="w-full">
-          End Turn
+        <Button onClick={handleEndTurn} variant="outline" className="w-full" size="lg">
+          ⏭️ End Turn
         </Button>
 
-        <Separator />
+        <Separator className="bg-muted/50" />
 
         {/* Commit/Clear */}
-        <div className="flex gap-2">
-          <Button onClick={handleCommit} className="flex-1">
-            Commit Action
+        <div className="grid grid-cols-2 gap-3">
+          <Button onClick={handleCommit} className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700" size="lg">
+            ✓ Commit
           </Button>
-          <Button onClick={handleClear} variant="outline" className="flex-1">
-            Clear Preview
+          <Button onClick={handleClear} variant="outline" size="lg">
+            ✕ Clear
           </Button>
         </div>
       </CardContent>

@@ -18,13 +18,13 @@ export const StateViewer: React.FC<StateViewerProps> = ({ gameState, previewStat
   };
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>State Viewer</CardTitle>
+    <Card className="enhanced-card border-0">
+      <CardHeader className="pb-3">
+        <CardTitle className="text-lg">🔍 State Viewer</CardTitle>
       </CardHeader>
       <CardContent>
         <Tabs defaultValue="current">
-          <TabsList className="grid w-full grid-cols-2">
+          <TabsList className="grid w-full grid-cols-2 bg-muted/50">
             <TabsTrigger value="current">Current State</TabsTrigger>
             <TabsTrigger value="preview">Preview State</TabsTrigger>
           </TabsList>
@@ -38,8 +38,8 @@ export const StateViewer: React.FC<StateViewerProps> = ({ gameState, previewStat
               >
                 📋 Copy to Clipboard
               </Button>
-              <ScrollArea className="h-[400px] w-full rounded-md border">
-                <pre className="p-4 text-xs font-mono">
+              <ScrollArea className="h-96 w-full rounded-lg border border-muted/50 bg-muted/20">
+                <pre className="p-4 text-xs font-mono text-foreground/80">
                   {JSON.stringify(gameState, null, 2)}
                 </pre>
               </ScrollArea>
@@ -56,10 +56,16 @@ export const StateViewer: React.FC<StateViewerProps> = ({ gameState, previewStat
               >
                 📋 Copy to Clipboard
               </Button>
-              <ScrollArea className="h-[400px] w-full rounded-md border">
-                <pre className="p-4 text-xs font-mono">
-                  {previewState ? JSON.stringify(previewState, null, 2) : 'No preview state'}
-                </pre>
+              <ScrollArea className="h-96 w-full rounded-lg border border-muted/50 bg-muted/20">
+                {previewState ? (
+                  <pre className="p-4 text-xs font-mono text-foreground/80">
+                    {JSON.stringify(previewState, null, 2)}
+                  </pre>
+                ) : (
+                  <div className="flex items-center justify-center h-96">
+                    <p className="text-muted-foreground italic">No preview available</p>
+                  </div>
+                )}
               </ScrollArea>
             </div>
           </TabsContent>
