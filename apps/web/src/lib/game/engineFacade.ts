@@ -5,8 +5,9 @@ import {
   checkEnd,
   replay,
   runTick,
+  cloneState,
 } from '@entropy-garden/engine';
-import type { GameState, Action } from '@entropy-garden/engine';
+import type { GameState, Action, GameEnd } from '@entropy-garden/engine';
 
 /**
  * Engine facade providing clean API for game engine operations
@@ -52,5 +53,12 @@ export class GameEngine {
    */
   static replayFromState(initialState: GameState, actions: Action[]): GameState {
     return replay(initialState, actions);
+  }
+
+  /**
+   * Clone a game state
+   */
+  static cloneState(state: GameState): GameState {
+    return cloneState(state);
   }
 }

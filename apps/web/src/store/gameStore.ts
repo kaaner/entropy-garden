@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { GameEngine } from '../lib/game/engineFacade';
 import { GameAI } from '../lib/game/aiFacade';
-import type { GameState, Action, PlayerId } from '@entropy-garden/engine';
+import type { GameState, Action, PlayerId, GameEnd } from '@entropy-garden/engine';
 import type { Difficulty } from '@entropy-garden/ai';
 
 interface GameStore {
@@ -37,12 +37,12 @@ export const useGameStore = create<GameStore>((set, get) => ({
   aiDifficulty: 'easy',
 
   newGame: () => {
-    const initialState = createInitialState();
+    const initialState = GameEngine.createInitialState();
     set({
       gameState: initialState,
       previewState: null,
       actionDraft: null,
-      history: [cloneState(initialState)],
+      history: [GameEngine.cloneState(initialState)],
       logs: ['Game started'],
       status: 'playing',
       winner: null,
