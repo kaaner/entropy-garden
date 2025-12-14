@@ -2,12 +2,174 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 241, 245, 249;
-  --background-rgb: 15, 23, 42;
+@layer base {
+  :root {
+    --background: 224 71% 4%;
+    --foreground: 213 31% 91%;
+    --card: 224 71% 6%;
+    --card-foreground: 213 31% 91%;
+    --popover: 224 71% 6%;
+    --popover-foreground: 213 31% 91%;
+    --primary: 142 76% 45%;
+    --primary-foreground: 144 61% 12%;
+    --secondary: 220 13% 18%;
+    --secondary-foreground: 213 31% 91%;
+    --muted: 223 47% 11%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 216 34% 17%;
+    --accent-foreground: 213 31% 91%;
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 213 31% 91%;
+    --border: 216 34% 17%;
+    --input: 216 34% 17%;
+    --ring: 142 76% 45%;
+    --radius: 0.75rem;
+    --player-0-color: 34, 197, 94;
+    --player-1-color: 239, 68, 68;
+    --player-0-glow: 74, 222, 128;
+    --player-1-glow: 248, 113, 113;
+    --nutrient-color: 52, 211, 153;
+    --moisture-color: 96, 165, 250;
+  }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: rgb(var(--background-rgb));
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    background: linear-gradient(135deg, hsl(224 71% 4%) 0%, hsl(220 50% 6%) 100%);
+    min-height: 100vh;
+  }
 }
+
+/* Game Board Styling */
+.game-board {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.8) 100%);
+  border: 2px solid rgba(100, 116, 139, 0.3);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5),
+              inset 0 1px 0 rgba(148, 163, 184, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.cell {
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(51, 65, 85, 0.9) 100%);
+  border: 1px solid rgba(71, 85, 105, 0.4);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.cell::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 0%, rgba(148, 163, 184, 0.1), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cell:hover {
+  transform: translateY(-2px);
+  border-color: rgba(100, 116, 139, 0.6);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3),
+              inset 0 1px 0 rgba(148, 163, 184, 0.15);
+}
+
+.cell:hover::before {
+  opacity: 1;
+}
+
+.cell-preview {
+  border: 2px solid rgb(234, 179, 8);
+  box-shadow: 0 0 20px rgba(234, 179, 8, 0.4),
+              inset 0 0 20px rgba(234, 179, 8, 0.1);
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(234, 179, 8, 0.4),
+                inset 0 0 20px rgba(234, 179, 8, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(234, 179, 8, 0.6),
+                inset 0 0 30px rgba(234, 179, 8, 0.2);
+  }
+}
+
+/* Species Icon Styling */
+.species-icon {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.species-icon-image {
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.species-icon:hover .species-icon-image {
+  transform: scale(1.1);
+}
+
+/* Player 0 (Green) */
+.icon-player-0 {
+  filter: drop-shadow(0 0 6px rgb(var(--player-0-glow)));
+}
+
+.icon-player-0:hover {
+  filter: drop-shadow(0 0 12px rgb(var(--player-0-glow)));
+}
+
+/* Player 1 (Red) */
+.icon-player-1 {
+  filter: drop-shadow(0 0 6px rgb(var(--player-1-glow)));
+}
+
+.icon-player-1:hover {
+  filter: drop-shadow(0 0 12px rgb(var(--player-1-glow)));
+}
+
+/* Inactive species */
+.inactive-species {
+  opacity: 0.35;
+  filter: grayscale(90%) brightness(0.6);
+}
+
+/* Resource indicators */
+.nutrient-indicator {
+  color: rgb(var(--nutrient-color));
+  text-shadow: 0 0 8px rgba(var(--nutrient-color), 0.5);
+  font-weight: 700;
+}
+
+.moisture-indicator {
+  color: rgb(var(--moisture-color));
+  text-shadow: 0 0 8px rgba(var(--moisture-color), 0.5);
+  font-weight: 700;
+}
+
+/* Card enhancements */
+.enhanced-card {
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(51, 65, 85, 0.9) 100%);
+  border: 1px solid rgba(100, 116, 139, 0.3);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4),
+              inset 0 1px 0 rgba(148, 163, 184, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+/* Accessibility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
