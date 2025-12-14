@@ -2,6 +2,11 @@
 
 A strategic cellular automata PvE game built with TypeScript and Next.js.
 
+![Version](https://img.shields.io/badge/version-0.1.0-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
+![Node](https://img.shields.io/badge/node-%3E%3D20.0.0-brightgreen)
+![pnpm](https://img.shields.io/badge/pnpm-%3E%3D8.0.0-orange)
+
 ## Overview
 
 Entropy Garden is a turn-based strategy game where players compete against AI opponents by seeding, mutating, and managing cellular organisms on a grid. The game combines elements of cellular automata, resource management, and strategic decision-making.
@@ -108,19 +113,31 @@ Next.js web application featuring:
 
 ## Development Status
 
-- ✅ **Packages (engine, ai)** - Complete and tested
-- 🚧 **Web App** - In development
-  - ✅ Sprint 0: Foundation & Scaffolding
-  - ⏳ Sprint 1: Playable PvE Core Loop
-  - ⏳ Sprint 2: Preview, Timer & Integration Tests
-  - ⏳ Sprint 3: Replay & Debug Tools
-- 📅 **Mobile App** - Planned
+**Current Version:** 0.1.0 ([Changelog](./CHANGELOG.md))
 
-See [TASKS.md](./TASKS.md) for detailed roadmap.
+- ✅ **Sprint 0 (v0.1.0)** - Infrastructure & Foundation
+- 🚧 **Sprint 1 (v0.2.0)** - Playable PvE Core Loop (In Progress)
+- 📅 **Sprint 2 (v0.3.0)** - Preview, Timer & Integration Tests
+- 📅 **Sprint 3 (v0.4.0)** - Replay & Debug Tools
+- 🎯 **v1.0.0** - Production Release
+
+See [TASKS.md](./TASKS.md) for detailed roadmap and [VERSIONING.md](./VERSIONING.md) for Git Flow strategy.
 
 ## Contributing
 
 We welcome contributions! Please see [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
+
+### Development Workflow
+
+We use **Git Flow** branching strategy:
+
+- `master` - Production releases (tagged with versions)
+- `develop` - Integration branch (base for features)
+- `feature/*` - Feature branches (from develop)
+- `release/*` - Release preparation
+- `hotfix/*` - Critical fixes
+
+See [VERSIONING.md](./VERSIONING.md) for complete workflow details.
 
 ## License
 
@@ -161,9 +178,14 @@ See [N8N.md](./N8N.md) for complete automation guide with workflow templates.
 
 ## Links
 
-- [Web App README](./apps/web/README.md)
-- [Docker Guide](./DOCKER.md)
-- [n8n Automation Guide](./N8N.md)
-- [Task Roadmap](./TASKS.md)
-- [Engine Documentation](./packages/engine/README.md)
-- [AI Documentation](./packages/ai/README.md)
+- [📖 Documentation](./README.md)
+- [🐳 Docker Guide](./DOCKER.md)
+- [🤖 n8n Automation](./N8N.md)
+- [📋 Task Roadmap](./TASKS.md)
+- [🔀 Versioning Strategy](./VERSIONING.md)
+- [📝 Changelog](./CHANGELOG.md)
+- [🤝 Contributing](./CONTRIBUTING.md)
+- [⚙️ Engine Docs](./packages/engine/README.md)
+- [🧠 AI Docs](./packages/ai/README.md)
+- [🐛 Report Issues](https://github.com/kaaner/entropy-garden/issues)
+- [🚀 Releases](https://github.com/kaaner/entropy-garden/releases)
