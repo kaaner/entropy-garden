@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { Cell } from './Cell';
 import type { GameState } from '@entropy-garden/engine';

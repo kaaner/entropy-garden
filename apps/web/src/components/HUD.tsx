@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import type { GameState, PlayerId } from '@entropy-garden/engine';
 

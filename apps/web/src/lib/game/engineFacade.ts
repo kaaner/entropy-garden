@@ -7,7 +7,7 @@ import {
   runTick,
   cloneState,
 } from '@entropy-garden/engine';
-import type { GameState, Action, GameEnd } from '@entropy-garden/engine';
+import type { GameState, Action } from '@entropy-garden/engine';
 
 /**
  * Engine facade providing clean API for game engine operations

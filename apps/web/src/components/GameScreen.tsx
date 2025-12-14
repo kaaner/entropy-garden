@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { useGameStore } from '../store/gameStore';
 import { BoardGrid } from './BoardGrid';

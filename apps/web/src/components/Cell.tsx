@@ -1,5 +1,7 @@
+'use client';
+
 import React from 'react';
-import type { Cell as GameCell, Occupant } from '@entropy-garden/engine';
+import type { Cell as GameCell } from '@entropy-garden/engine';
 
 interface CellProps {
   cell: GameCell;
