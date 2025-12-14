@@ -180,14 +180,27 @@
 
 ---
 
-#### S2.4: Integration Tests
-- [ ] Set up Vitest in apps/web
-- [ ] Test: New game → player action → AI responds
-- [ ] Test: Replay export/import roundtrip
-- [ ] Test: Deterministic replay (same actions = same state)
-- [ ] Add test script to package.json
+#### S2.4: Integration Tests (Issue #13)
+- [x] Set up Vitest in apps/web
+- [x] Test: New game → player action → AI responds
+- [x] Test: Replay export/import roundtrip
+- [x] Test: Deterministic replay (same actions = same state)
+- [x] Add test script to package.json
 
-**Acceptance:** `pnpm test` passes all integration tests
+**Acceptance:** `pnpm test` passes all integration tests  
+**GitHub Issue:** #13
+
+---
+
+#### S2.5: Landing Page & Tour Guide (Issue #26)
+- [x] Create Landing Page with 'New Game' entry
+- [x] Implement Welcome Modal
+- [x] Implement Tour Guide with 'Step-by-Step' and 'Skip'
+- [x] Enhance visuals (particles, glow effects)
+- [x] Split routes (/ for landing, /game for simulation)
+
+**Acceptance:** User can onboard and start game via landing page  
+**GitHub Issue:** #26
 
 ---
 
