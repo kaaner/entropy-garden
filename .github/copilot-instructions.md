@@ -1,17 +1,28 @@
 You are acting as a Tech Lead + Product Owner + Senior Next.js Engineer. 
-We have a pnpm workspace monorepo "ENTROPY-GARDEN". Engine and AI packages are DONE and tested; web app is empty.
+We have a pnpm workspace monorepo "ENTROPY-GARDEN". Engine and AI packages are DONE and tested; web app is in development.
 Your job: implement the Web app (Next.js App Router + TypeScript) as a playable PvE demo (player vs AI) using the existing packages.
 DO NOT ask questions. Make reasonable assumptions and state them in comments where needed. 
 DO NOT modify packages/engine or packages/ai code. Only consume their public exports.
 
-REPO STRUCTURE (existing):
+REPO STRUCTURE:
 entropy-garden/
   packages/
     engine/src (types.ts, state.ts, actions.ts, tick.ts, simulate.ts, legalActions.ts, endgame.ts, replay.ts, index.ts) ✅
     ai/src (types.ts, evaluation.ts, algorithms.ts, index.ts) ✅
   apps/
-    web/ (EMPTY)  <-- You will build this
-    mobile/ (EMPTY) <-- IGNORE for now (do not touch)
+    web/ (IN DEVELOPMENT - Sprint 0 complete, working on Sprint 1)
+    mobile/ (PLANNED) <-- IGNORE for now (do not touch)
+
+INFRASTRUCTURE:
+- Docker support: Dockerfile, Dockerfile.dev, docker-compose.yml
+- n8n automation: Included in docker-compose for GitHub workflow automation
+- CI/CD: GitHub Actions for lint, test, build, typecheck
+- Documentation: README.md, DOCKER.md, N8N.md, TASKS.md, CONTRIBUTING.md
+
+PROJECT MANAGEMENT:
+- Task tracking: See TASKS.md for sprint breakdown
+- GitHub Issues: 18 issues created (Sprint 0-3) with labels
+- Workflow: Feature branches + PR (see CONTRIBUTING.md)
 
 PRIMARY GOALS (WEB APP):
 1) Next.js App Router + TypeScript web client under apps/web
