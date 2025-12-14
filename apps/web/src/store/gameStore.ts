@@ -1,7 +1,8 @@
 import { create } from 'zustand';
 import { GameEngine } from '../lib/game/engineFacade';
 import { GameAI } from '../lib/game/aiFacade';
-import type { GameState, Action, PlayerId, GameEnd } from '@entropy-garden/engine';
+import { CommitPipeline } from '../lib/game/commit';
+import type { GameState, Action, PlayerId } from '@entropy-garden/engine';
 import type { Difficulty } from '@entropy-garden/ai';
 
 interface GameStore {
@@ -53,7 +54,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
     const { gameState } = get();
     if (!gameState) return;
 
-    const result = simulate(gameState, action);
+    const result = GameEngine.simulateAction(gameState, action);
     if (result.state) {
       set({
         actionDraft: action,
@@ -63,71 +64,65 @@ export const useGameStore = create<GameStore>((set, get) => ({
   },
 
   commitAction: () => {
-    const { gameState, previewState, actionDraft, history, aiDifficulty } = get();
-    if (!gameState || !previewState || !actionDraft) return;
+    const { gameState, actionDraft, history, logs } = get();
+    if (!gameState || !actionDraft) {
+      get().addLog('Error: No action to commit');
+      return;
+    }
 
-    // Apply the action
-    let newState = cloneState(previewState);
+    // Use CommitPipeline
+    const result = CommitPipeline.commitAction(gameState, actionDraft, history, logs);
 
-    // Run tick for end turn
-    newState = runTick(newState);
+    if (!result.success) {
+      get().addLog(`Error: ${result.error}`);
+      return;
+    }
 
-    // Switch player
-    newState.currentPlayer = (1 - newState.currentPlayer) as PlayerId;
-    newState.turnNumber += 1;
-    newState.lastAction = actionDraft;
-
-    // Check end
-    const endCheck: GameEnd = checkEnd(newState);
-
-    // Update store
-    const newHistory = [...history, cloneState(newState)];
-    const newLogs = [...get().logs, `Player ${gameState.currentPlayer} played ${actionDraft.type}`];
-
+    // Update store with result
     set({
-      gameState: newState,
+      gameState: result.newState!,
       previewState: null,
       actionDraft: null,
-      history: newHistory,
-      logs: newLogs,
-      status: endCheck.ended ? 'ended' : 'playing',
-      winner: endCheck.winner || null,
+      history: result.history!,
+      logs: result.logs!,
+      status: result.ended ? 'ended' : 'playing',
+      winner: result.winner || null,
     });
 
     // If game not ended and next player is AI (1), trigger AI turn
-    if (!endCheck.ended && newState.currentPlayer === 1) {
+    if (!result.ended && result.newState!.currentPlayer === 1) {
       setTimeout(() => get().aiTurn(), 500); // Small delay for UX
     }
   },
 
   aiTurn: () => {
-    const { gameState, history, aiDifficulty } = get();
+    const { gameState, history, logs, aiDifficulty } = get();
     if (!gameState || gameState.currentPlayer !== 1) return;
 
-    const action = generateMove(gameState, { difficulty: aiDifficulty });
-    const result = simulate(gameState, action);
-
-    if (result.state) {
-      let newState = cloneState(result.state);
-      newState = runTick(newState);
-      newState.currentPlayer = (1 - newState.currentPlayer) as PlayerId;
-      newState.turnNumber += 1;
-      newState.lastAction = action;
-
-      const endCheck = checkEnd(newState);
-      const newHistory = [...history, cloneState(newState)];
-      const newLogs = [...get().logs, `AI played ${action.type}`];
-
-      set({
-        gameState: newState,
-        history: newHistory,
-        logs: newLogs,
-        status: endCheck.ended ? 'ended' : 'playing',
-        winner: endCheck.winner || null,
-      });
-
-      // If not ended and back to human, continue
+    // Generate AI move
+    const action = GameAI.chooseAction(gameState, aiDifficulty);
+    
+    if (!action) {
+      get().addLog('Error: AI failed to generate move');
+      return;
     }
+
+    // Use CommitPipeline for AI action too
+    const result = CommitPipeline.commitAction(gameState, action, history, logs);
+
+    if (!result.success) {
+      get().addLog(`AI Error: ${result.error}`);
+      return;
+    }
+
+    // Update store
+    set({
+      gameState: result.newState!,
+      history: result.history!,
+      logs: result.logs!,
+      status: result.ended ? 'ended' : 'playing',
+      winner: result.winner || null,
+    });
   },
 
   updatePreview: (state: GameState) => {
