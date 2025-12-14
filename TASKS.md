@@ -272,6 +272,98 @@
 
 ---
 
+## 🟣 SPRINT 4: Localization & Documentation
+
+**Goal:** Add i18n support and comprehensive user documentation
+
+### Tasks
+
+#### S4.1: Localization Infrastructure
+- [ ] Add next-intl or react-i18next to apps/web
+- [ ] Create `src/locales/` directory structure
+- [ ] Add language files: en.json, tr.json (English, Turkish)
+- [ ] Configure locale detection and switching
+- [ ] Wrap app with i18n provider
+- [ ] Create language switcher component
+- [ ] Translate all UI strings (buttons, labels, messages)
+- [ ] Translate game terminology (Seed, Spread, Mutate, etc.)
+- [ ] Add locale persistence (localStorage/cookie)
+
+**Acceptance:** User can switch between English and Turkish languages
+
+---
+
+#### S4.2: User Guide & Tutorial
+- [ ] Create `components/UserGuide.tsx` or `/guide` route
+- [ ] Document game objectives and win conditions
+- [ ] Explain resource system (IP/Initiative Points)
+- [ ] Tutorial for each action type:
+  - Seed: How to create new organisms
+  - Spread: Environmental expansion mechanics
+  - Mutate: Evolution and direction system
+  - EndTurn: Turn management
+- [ ] Show example turn sequences
+- [ ] Add visual diagrams/screenshots
+- [ ] Make guide accessible from main menu
+
+**Acceptance:** New player can understand basic gameplay from guide
+
+---
+
+#### S4.3: Game Rules Documentation
+- [ ] Create `components/RulesReference.tsx` or `/rules` route
+- [ ] Document legal action requirements:
+  - What makes an action valid/invalid
+  - IP costs for each action
+  - Cell occupancy rules
+  - Spread limitations
+  - Mutation constraints
+- [ ] Explain turn phases and timing
+- [ ] Document timer behavior (25s, auto-EndTurn)
+- [ ] Win/loss conditions with examples
+- [ ] Add quick reference table/cheatsheet
+
+**Acceptance:** Players can look up specific rules easily
+
+---
+
+#### S4.4: FAQ & Tooltips
+- [ ] Create `components/FAQ.tsx` or `/faq` route
+- [ ] Common questions:
+  - Why can't I perform this action? (illegal action explanations)
+  - What happens when timer runs out?
+  - How does AI difficulty work?
+  - How to read the board state?
+  - What do preview overlays mean?
+  - How to use replay system?
+  - How to report bugs?
+- [ ] Add contextual tooltips in UI:
+  - Hover over action buttons → explain action
+  - Hover over cells → show occupant details
+  - Hover over IP → explain resource system
+  - Hover over timer → explain turn timeout
+- [ ] Link to GitHub issues for bug reports
+- [ ] Add keyboard shortcuts reference
+
+**Acceptance:** Common player questions are answered in-app
+
+---
+
+#### S4.5: Error Messages & Feedback
+- [ ] Improve action validation error messages
+- [ ] Translate error messages to selected language
+- [ ] Add helpful context for illegal actions:
+  - "Not enough IP" → Show current IP and required cost
+  - "Cell occupied" → Explain occupancy rules
+  - "Invalid target" → Highlight valid targets
+- [ ] Toast/notification system for feedback
+- [ ] Success confirmations for actions
+- [ ] Clear endgame announcements with reason
+
+**Acceptance:** Players understand why actions fail
+
+---
+
 ## Notes
 
 - Engine and AI packages are complete - DO NOT modify
