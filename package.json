@@ -1,6 +1,6 @@
 {
   "name": "entropy-garden",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "dev:web": "pnpm --filter @entropy-garden/web dev",
@@ -21,6 +21,7 @@
     "happy-dom": "^20.0.11",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
+    "prettier": "^3.7.4",
     "typescript": "^5.3.3",
     "vitest": "4.0.15"
   },

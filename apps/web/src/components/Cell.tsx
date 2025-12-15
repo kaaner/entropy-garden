@@ -11,18 +11,19 @@ interface CellProps {
   y: number;
   onClick?: (x: number, y: number) => void;
   isPreview?: boolean;
+  isChanged?: boolean; // Whether this cell has changed in preview
 }
 
-export const Cell: React.FC<CellProps> = ({ cell, x, y, onClick, isPreview }) => {
+export const Cell: React.FC<CellProps> = ({ cell, x, y, onClick, isPreview, isChanged }) => {
   const handleClick = () => {
     if (onClick) onClick(x, y);
   };
 
   return (
     <div
-      className={`cell aspect-square flex flex-col items-center justify-between p-2 cursor-pointer rounded-lg ${
+      className={`cell aspect-square flex flex-col items-center justify-between p-2 cursor-pointer rounded-lg transition-all ${
         isPreview ? 'cell-preview' : ''
-      }`}
+      } ${isChanged ? 'ring-2 ring-blue-400 ring-offset-2 ring-offset-background shadow-lg shadow-blue-500/50' : ''}`}
       onClick={handleClick}
       title={`Position: (${x}, ${y})`}
     >

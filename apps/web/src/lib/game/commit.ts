@@ -38,33 +38,24 @@ export class CommitPipeline {
       };
     }
 
-    // Apply action
-    const result = GameEngine.simulateAction(currentState, action);
-    if (!result.state) {
-      return {
-        success: false,
-        error: result.error || 'Failed to apply action',
-      };
-    }
-
-    let newState = GameEngine.cloneState(result.state);
-
-    // Run tick for end turn
-    newState = GameEngine.runTick(newState);
-
-    // Switch player
-    newState.currentPlayer = (1 - newState.currentPlayer) as PlayerId;
-    newState.turnNumber += 1;
-    newState.lastAction = action;
+    // Apply action (engine already handles tick, player switch for EndTurn, and lastAction)
+    const newState = GameEngine.applyAction(currentState, action);
 
     // Check endgame
     const endCheck = GameEngine.checkGameEnd(newState);
 
     // Update history and logs
     const newHistory = [...history, GameEngine.cloneState(newState)];
+    const actionDesc = action.type === 'SeedSpecies' 
+      ? `${action.type}(${action.species} at ${action.x},${action.y})`
+      : action.type === 'ManipulateEnv'
+      ? `${action.type}(${action.target}${action.delta > 0 ? '+' : ''}${action.delta} at ${action.x},${action.y})`
+      : action.type === 'Mutate'
+      ? `${action.type}(${action.dir} at ${action.x},${action.y})`
+      : action.type;
     const newLogs = [
       ...logs,
-      `Player ${currentState.currentPlayer} played ${action.type}`,
+      `Player ${currentState.currentPlayer + 1} → ${actionDesc}`,
     ];
 
     return {

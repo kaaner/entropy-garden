@@ -7,18 +7,67 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Planned for 0.2.0 (Sprint 1)
-- Game Store Implementation (Zustand)
-- Engine & AI Facades
-- Commit Pipeline
-- AI Turn Orchestration
-- Minimal UI Components
+### Planned for 0.3.0 (Sprint 2)
+
+- Action Preview System
+- 25-second Turn Timer
+- Preview Overlay with Diff Visualization
+- Advanced Integration Tests
+- Deterministic State Validation
+
+## [0.2.0] - 2025-12-14
+
+### Added
+
+#### 🎮 Landing Page & Onboarding
+
+- Immersive landing page with hero section and features showcase
+- Interactive tour guide system with step-by-step walkthroughs
+- Enhanced visual effects (particle system, glow effects)
+- Responsive design for mobile and desktop
+- "Start Playing" and "Take a Tour" CTAs
+
+#### 🧪 Integration Testing
+
+- Complete integration test suite for game loop
+- AI vs AI deterministic replay validation
+- Replay export/import roundtrip tests
+- Game state consistency verification
+- 4 comprehensive integration tests passing
+
+#### 🎨 Visual Enhancements
+
+- Particle effect system for immersive atmosphere
+- Glow effects and smooth animations
+- Enhanced UI components styling
+- Improved accessibility and UX
+
+#### 📱 Responsive Design
+
+- Mobile-first approach
+- Tablet and desktop optimizations
+- Touch-friendly controls
+- Adaptive layouts
+
+### Changed
+
+- README.md updated to reflect v0.2.0 features
+- Development status roadmap updated
+- Sprint tracking updated in TASKS.md
+
+### Sprint 1 Completion
+
+- Issue #5: Landing Page Implementation ✅
+- Issue #6: Interactive Tour Guide ✅
+- Issue #7: Integration Tests ✅
+- Issue #8: Visual Enhancements ✅
 
 ## [0.1.0] - 2025-12-14
 
 ### Added
 
 #### 📚 Documentation
+
 - Main README.md with comprehensive project overview
 - CONTRIBUTING.md with development guidelines and workflow
 - DOCKER.md - Complete Docker deployment guide (392 lines)
@@ -29,6 +78,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - This CHANGELOG.md
 
 #### 🐳 Docker Infrastructure
+
 - Multi-stage production Dockerfile for optimized builds
 - Development Dockerfile with hot reload support
 - docker-compose.yml (development environment + n8n)
@@ -40,6 +90,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - .env.example with configuration template
 
 #### 🔧 Development Tools
+
 - .editorconfig for consistent coding styles across editors
 - ESLint configuration for Next.js
 - Prettier configuration with ignore files
@@ -53,6 +104,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - CODEOWNERS file (@kaaner)
 
 #### 🌐 Web Application Foundation
+
 - Next.js 14 App Router setup
 - TypeScript strict mode configuration
 - Tailwind CSS integration with custom theme
@@ -71,6 +123,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Standalone output configuration for Docker deployment
 
 #### 🔄 Automation
+
 - n8n integration in Docker Compose
 - Workflow templates for:
   - GitHub Issue → Discord notification
@@ -80,12 +133,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Automation setup documentation
 
 #### 📦 Package Configuration
+
 - Root package.json with workspace scripts
 - apps/web/package.json with all dependencies
 - Proper .gitignore files at root and web app level
 - pnpm workspace setup maintained
 
 #### 🎯 Project Management
+
 - 18 GitHub issues created (Sprint 0-3)
 - Sprint labels configured
 - Task breakdown in TASKS.md
@@ -93,22 +148,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Develop branch created
 
 ### Changed
+
 - Updated .gitignore with comprehensive exclusions
 - Enhanced .github/copilot-instructions.md with infrastructure info
 
 ### Infrastructure
+
 - Node.js 20+ required
 - pnpm 8+ required
 - Docker 20.10+ support
 - Docker Compose 2.0+ support
 
 ### Sprint 0 Completion
+
 - Issue #1: Next.js Project Setup ✅
 - Issue #2: Monorepo Configuration ✅
 - Issue #3: Code Quality Tools ✅
 - Issue #4: Directory Structure ✅
 
 ### Statistics
+
 - 42 files created
 - 2,695 lines of code/documentation added
 - 5 major documentation files (2,400+ lines)
@@ -120,12 +179,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Version History
 
 ### 0.x.x - Initial Development
+
 - **0.1.0** - Sprint 0: Infrastructure & Foundation ✅
-- **0.2.0** - Sprint 1: Playable PvE Core (Planned)
-- **0.3.0** - Sprint 2: Preview, Timer & Tests (Planned)
+- **0.2.0** - Sprint 1: Landing Page, Tour & Integration Tests ✅
+- **0.3.0** - Sprint 2: Preview, Timer & Advanced Features (Planned)
 - **0.4.0** - Sprint 3: Replay & Debug Tools (Planned)
 
 ### 1.0.0 - Production Release (Future)
+
 - All features complete
 - Full testing coverage
 - Production-ready
@@ -143,6 +204,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ---
 
 **Legend:**
+
 - 🎉 Major milestone
 - ✨ New feature
 - 🐛 Bug fix

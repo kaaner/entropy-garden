@@ -2,7 +2,7 @@
 
 A strategic cellular automata PvE game built with TypeScript and Next.js.
 
-![Version](https://img.shields.io/badge/version-0.1.0-blue)
+![Version](https://img.shields.io/badge/version-0.2.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Node](https://img.shields.io/badge/node-%3E%3D20.0.0-brightgreen)
 ![pnpm](https://img.shields.io/badge/pnpm-%3E%3D8.0.0-orange)
@@ -106,6 +106,9 @@ AI opponent implementations:
 
 Next.js web application featuring:
 - Playable PvE matches
+- Immersive Landing Page & Onboarding
+- Interactive Tour Guide
+- Enhanced Visuals (Particles, Glow Effects)
 - Action preview system
 - 25-second turn timer
 - Replay export/import
@@ -113,12 +116,12 @@ Next.js web application featuring:
 
 ## Development Status
 
-**Current Version:** 0.1.0 ([Changelog](./CHANGELOG.md))
+**Current Version:** 0.2.0 ([Changelog](./CHANGELOG.md))
 
-- ✅ **Sprint 0 (v0.1.0)** - Infrastructure & Foundation
-- 🚧 **Sprint 1 (v0.2.0)** - Playable PvE Core Loop (In Progress)
-- 📅 **Sprint 2 (v0.3.0)** - Preview, Timer & Integration Tests
-- 📅 **Sprint 3 (v0.4.0)** - Replay & Debug Tools
+- ✅ **Sprint 1 (v0.1.0)** - Playable PvE Core Loop (Completed)
+- ✅ **Sprint 2 (v0.2.0)** - Landing Page, Tour & Integration Tests (Completed)
+- 📅 **Sprint 3 (v0.3.0)** - Preview, Timer & Advanced Features
+- 📅 **Sprint 4 (v0.4.0)** - Replay & Debug Tools
 - 🎯 **v1.0.0** - Production Release
 
 See [TASKS.md](./TASKS.md) for detailed roadmap and [VERSIONING.md](./VERSIONING.md) for Git Flow strategy.

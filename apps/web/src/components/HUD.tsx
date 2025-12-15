@@ -1,9 +1,12 @@
 'use client';
 
-import React from 'react';
+import React, { useCallback } from 'react';
 import type { GameState, PlayerId } from '@entropy-garden/engine';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Separator } from './ui/separator';
+import { useTurnTimer } from '@/lib/game/useTurnTimer';
+import { useGameStore } from '@/store/gameStore';
+import { ActionAdapter } from '@/lib/game/actionAdapter';
 
 interface HUDProps {
   gameState: GameState | null;
@@ -13,6 +16,23 @@ interface HUDProps {
 }
 
 export const HUD: React.FC<HUDProps> = ({ gameState, status, winner, logs }) => {
+  const { timerKey, selectAction, commitAction } = useGameStore();
+
+  const handleTimeout = useCallback(() => {
+    if (gameState && gameState.currentPlayer === 0 && status === 'playing') {
+      // Auto end turn when timer expires (only for human player)
+      const action = ActionAdapter.endTurn();
+      selectAction(action);
+      commitAction();
+    }
+  }, [gameState, status, selectAction, commitAction]);
+
+  const { timeRemaining } = useTurnTimer({
+    duration: 25,
+    onTimeout: handleTimeout,
+    enabled: status === 'playing' && gameState !== null && gameState.currentPlayer === 0,
+  });
+
   if (!gameState) {
     return (
       <Card className="enhanced-card border-0">
@@ -77,6 +97,25 @@ export const HUD: React.FC<HUDProps> = ({ gameState, status, winner, logs }) => 
         </div>
 
         <Separator className="bg-muted/50" />
+
+        {/* Turn Timer */}
+        {status === 'playing' && currentPlayer === 0 && (
+          <>
+            <div className="bg-muted/50 p-4 rounded-lg">
+              <p className="text-xs text-muted-foreground uppercase tracking-wide mb-2">Turn Timer</p>
+              <div className="flex items-center gap-3">
+                <span className="text-4xl">⏱️</span>
+                <div>
+                  <p className={`text-3xl font-bold ${timeRemaining <= 5 ? 'text-red-400 animate-pulse' : 'text-blue-400'}`}>
+                    {timeRemaining}s
+                  </p>
+                  <p className="text-xs text-muted-foreground">Auto EndTurn at 0</p>
+                </div>
+              </div>
+            </div>
+            <Separator className="bg-muted/50" />
+          </>
+        )}
 
         {/* Game Status */}
         <div className="bg-muted/50 p-4 rounded-lg">
