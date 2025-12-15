@@ -88,47 +88,40 @@ Create a dedicated landing page route that serves as entry point for new users.
 
 ---
 
-### TASK-2: Tutorial State Management
+### TASK-2: Tutorial State Management ✅ COMPLETED
 **PR Title:** `feat: Add tutorial state management with Zustand`  
 **Labels:** `enhancement`, `state`, `onboarding`  
-**Estimated:** 1.5h
+**Estimated:** 1.5h  
+**Actual:** 1h  
+**Status:** ✅ **COMPLETED** (2025-12-15)
 
 **Description:**
 Create a dedicated Zustand store for tutorial progress and orchestration.
 
-**Technical Scope:**
-1. Create `src/store/tutorialStore.ts`
-2. Tutorial state:
-   - `active: boolean`
-   - `currentStep: number`
-   - `completedSteps: Set<number>`
-   - `skipped: boolean`
-   - `started: boolean`
-3. Actions:
-   - `startTutorial()`
-   - `nextStep()`
-   - `prevStep()`
-   - `skipTutorial()`
-   - `completeTutorial()`
-   - `resetTutorial()`
-4. Persist to localStorage
-5. Integration with game route query params
+**Implementation Summary:**
+- Created tutorialStore.ts with complete state management
+- Implemented 8 actions (start, next, prev, skip, complete, reset, etc.)
+- Custom localStorage serialization for Set<number>
+- Query param integration (?tutorial=true)
+- Helper functions for progress and step checking
+- 24 comprehensive unit tests (all passing)
 
-**Files to Create/Modify:**
-- `src/store/tutorialStore.ts` (new)
-- `src/types/tutorial.ts` (step definitions)
+**Files Added:**
+- `src/store/tutorialStore.ts` - Tutorial store (170 lines)
+- `src/types/tutorial.ts` - TypeScript types (65 lines)
+- `src/__tests__/tutorialStore.test.ts` - Tests (322 lines)
 
-**Tests:**
-- Tutorial state transitions
-- localStorage persistence
-- Step validation
+**Files Modified:**
+- `src/app/game/page.tsx` - Query param handling
 
 **Definition of Done:**
-- [ ] tutorialStore implements all actions
-- [ ] State persists across page reloads
-- [ ] Can start, pause, resume, skip tutorial
-- [ ] Tests verify state machine logic
-- [ ] No memory leaks (cleanup on unmount)
+- [x] tutorialStore implements all actions
+- [x] State persists across page reloads
+- [x] Can start, pause, resume, skip tutorial
+- [x] Tests verify state machine logic (24 tests)
+- [x] No memory leaks (cleanup on unmount)
+
+**PR:** See `apps/web/TASK-2-PR.md` for detailed review notes
 
 ---
 
@@ -394,15 +387,16 @@ Track tutorial metrics for improvement (localStorage only, no external analytics
 ## 🚀 Implementation Order
 
 1. **TASK-1** ✅ (Landing Page) - **COMPLETED** 2025-12-15
-2. **TASK-2** ⏳ (Tutorial State) - Foundation
-3. **TASK-3** (Step Definitions) - Content
+2. **TASK-2** ✅ (Tutorial State) - **COMPLETED** 2025-12-15
+3. **TASK-3** ⏳ (Step Definitions) - Content (NEXT)
 4. **TASK-4** (Overlay UI) - User interface
 5. **TASK-5** (Integration) - Connect everything
 6. **TASK-6** (Help Panel) - Support returning users
 7. **TASK-7** (Analytics) - Track and improve
 
 **Estimated Total:** ~14 hours across 7 PRs  
-**Completed:** ~1.5 hours (TASK-1)
+**Completed:** ~2.5 hours (TASK-1 + TASK-2)  
+**Remaining:** ~11.5 hours (5 tasks)
 
 ---
 
@@ -410,10 +404,10 @@ Track tutorial metrics for improvement (localStorage only, no external analytics
 
 - [x] First-time users see landing page (TASK-1 ✅)
 - [ ] Tutorial teaches all core mechanics (TASK-2-5)
-- [ ] Players can skip at any time (TASK-2,5)
-- [ ] Tutorial progress persists (TASK-2)
+- [x] Players can skip at any time (TASK-2 ✅)
+- [x] Tutorial progress persists (TASK-2 ✅)
 - [ ] Returning users have quick reference (TASK-6)
-- [x] All tests pass (17/17 currently ✅)
+- [x] All tests pass (41/41 currently ✅)
 - [x] Mobile responsive (Landing page ✅)
 - [x] Accessible (keyboard nav, screen reader) (Landing page ✅)
 - [ ] i18n-ready structure (TASK-3)
