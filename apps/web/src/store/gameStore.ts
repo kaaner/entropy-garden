@@ -15,6 +15,7 @@ interface GameStore {
   status: 'playing' | 'ended';
   winner: PlayerId | null;
   aiDifficulty: Difficulty;
+  timerKey: number; // Used to reset timer
 
   // Actions
   newGame: () => void;
@@ -24,6 +25,7 @@ interface GameStore {
   updatePreview: (state: GameState) => void;
   clearPreview: () => void;
   addLog: (log: string) => void;
+  resetTimer: () => void;
 }
 
 export const useGameStore = create<GameStore>((set, get) => ({
@@ -36,6 +38,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
   status: 'ended',
   winner: null,
   aiDifficulty: 'easy',
+  timerKey: 0,
 
   newGame: () => {
     const initialState = GameEngine.createInitialState();
@@ -47,6 +50,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
       logs: ['Game started'],
       status: 'playing',
       winner: null,
+      timerKey: Date.now(),
     });
   },
 
@@ -87,6 +91,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
       logs: result.logs!,
       status: result.ended ? 'ended' : 'playing',
       winner: result.winner || null,
+      timerKey: Date.now(), // Reset timer on commit
     });
 
     // If game not ended and next player is AI (1), trigger AI turn
@@ -122,6 +127,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
       logs: result.logs!,
       status: result.ended ? 'ended' : 'playing',
       winner: result.winner || null,
+      timerKey: Date.now(), // Reset timer after AI turn
     });
   },
 
@@ -135,5 +141,9 @@ export const useGameStore = create<GameStore>((set, get) => ({
 
   addLog: (log: string) => {
     set({ logs: [...get().logs, log] });
+  },
+
+  resetTimer: () => {
+    set({ timerKey: Date.now() });
   },
 }));

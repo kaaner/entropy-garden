@@ -1,8 +1,9 @@
 'use client';
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Cell } from './Cell';
 import type { GameState } from '@entropy-garden/engine';
+import { calculateDiff } from '@/lib/game/diff';
 
 interface BoardGridProps {
   gameState: GameState | null;
@@ -15,6 +16,13 @@ export const BoardGrid: React.FC<BoardGridProps> = ({
   previewState,
   onCellClick
 }) => {
+  const changedCells = useMemo(() => {
+    if (!gameState || !previewState) return new Set<string>();
+    
+    const diff = calculateDiff(gameState, previewState);
+    return new Set(diff.cells.map(c => `${c.x}-${c.y}`));
+  }, [gameState, previewState]);
+
   if (!gameState) {
     return (
       <div className="aspect-square w-full max-w-2xl mx-auto border-2 border-dashed border-muted flex items-center justify-center rounded-xl bg-muted/20">
@@ -32,16 +40,20 @@ export const BoardGrid: React.FC<BoardGridProps> = ({
     <div className="game-board rounded-2xl p-6">
       <div className="grid grid-cols-7 gap-2 w-full max-w-2xl mx-auto">
         {displayState.board.map((row, y) =>
-          row.map((cell, x) => (
-            <Cell
-              key={`${x}-${y}`}
-              cell={cell}
-              x={x}
-              y={y}
-              onClick={onCellClick}
-              isPreview={!!previewState}
-            />
-          ))
+          row.map((cell, x) => {
+            const cellKey = `${x}-${y}`;
+            return (
+              <Cell
+                key={cellKey}
+                cell={cell}
+                x={x}
+                y={y}
+                onClick={onCellClick}
+                isPreview={!!previewState}
+                isChanged={changedCells.has(cellKey)}
+              />
+            );
+          })
         )}
       </div>
     </div>

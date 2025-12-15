@@ -7,6 +7,8 @@ import { HUD } from './HUD';
 import { ActionPalette } from './ActionPalette';
 import { LogPanel } from './LogPanel';
 import { StateViewer } from './StateViewer';
+import { PreviewOverlay } from './PreviewOverlay';
+import { ReplayControls } from './ReplayControls';
 import { Button } from './ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Separator } from './ui/separator';
@@ -61,6 +63,9 @@ export const GameScreen: React.FC = () => {
                   gameState={gameState}
                   previewState={previewState}
                 />
+                {gameState && previewState && (
+                  <PreviewOverlay gameState={gameState} previewState={previewState} />
+                )}
               </CardContent>
             </Card>
 
@@ -93,6 +98,8 @@ export const GameScreen: React.FC = () => {
             />
 
             <ActionPalette />
+
+            <ReplayControls />
           </div>
         </div>
       </div>

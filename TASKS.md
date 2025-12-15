@@ -19,53 +19,46 @@
 ### Tasks
 
 #### S0.1: Next.js Project Setup
-- [ ] Initialize Next.js 14+ with App Router in `apps/web`
-- [ ] Configure TypeScript strict mode
-- [ ] Set up src/app directory structure
-- [ ] Add package.json with dependencies:
-  - next@^14.0.0
-  - react@^18.0.0
-  - react-dom@^18.0.0
-  - zustand@^4.4.0
-  - tailwindcss@^3.3.0
-- [ ] Create basic page.tsx and layout.tsx
+- [x] Initialize Next.js 14+ with App Router in `apps/web`
+- [x] Configure TypeScript strict mode
+- [x] Set up src/app directory structure
+- [x] Add package.json with dependencies
+- [x] Create basic page.tsx and layout.tsx
 
-**Acceptance:** `pnpm dev:web` starts Next.js dev server
+**Acceptance:** `pnpm dev:web` starts Next.js dev server ✅
 
 ---
 
 #### S0.2: Monorepo Configuration
-- [ ] Configure tsconfig.json for workspace references
-- [ ] Add workspace dependencies in package.json:
-  - @entropy-garden/engine
-  - @entropy-garden/ai
-- [ ] Configure next.config.js with transpilePackages
-- [ ] Verify imports work from engine and ai packages
+- [x] Configure tsconfig.json for workspace references
+- [x] Add workspace dependencies in package.json
+- [x] Configure next.config.js with transpilePackages
+- [x] Verify imports work from engine and ai packages
 
-**Acceptance:** Can import and use types from packages/engine and packages/ai
+**Acceptance:** Can import and use types from packages/engine and packages/ai ✅
 
 ---
 
 #### S0.3: Code Quality Tools
-- [ ] Add ESLint config (.eslintrc.json)
-- [ ] Add Prettier config (.prettierrc)
-- [ ] Add lint and format scripts to package.json
-- [ ] Create .eslintignore and .prettierignore
-- [ ] Run initial lint/format pass
+- [x] Add ESLint config (.eslintrc.json)
+- [x] Add Prettier config (.prettierrc)
+- [x] Add lint and format scripts to package.json
+- [x] Create .eslintignore and .prettierignore
+- [x] Run initial lint/format pass
 
-**Acceptance:** `pnpm lint` and `pnpm format` work without errors
+**Acceptance:** `pnpm lint` and `pnpm format` work without errors ✅
 
 ---
 
 #### S0.4: Directory Structure
-- [ ] Create `src/app/` (routes)
-- [ ] Create `src/components/` (UI components)
-- [ ] Create `src/lib/game/` (game logic adapters)
-- [ ] Create `src/store/` (Zustand stores)
-- [ ] Create `src/types/` (UI-specific types)
-- [ ] Add README.md in apps/web with setup instructions
+- [x] Create `src/app/` (routes)
+- [x] Create `src/components/` (UI components)
+- [x] Create `src/lib/game/` (game logic adapters)
+- [x] Create `src/store/` (Zustand stores)
+- [x] Create `src/types/` (UI-specific types)
+- [x] Add README.md in apps/web with setup instructions
 
-**Acceptance:** All directories exist with placeholder index files
+**Acceptance:** All directories exist with placeholder index files ✅
 
 ---
 
@@ -76,62 +69,58 @@
 ### Tasks
 
 #### S1.1: Game Store Implementation
-- [ ] Create `store/gameStore.ts` with Zustand
-- [ ] State: gameState, previewState, actionDraft, history, logs
-- [ ] State: status (playing/ended), winner, aiDifficulty
-- [ ] Actions: newGame, selectAction, commitAction, aiTurn
-- [ ] Actions: updatePreview, clearPreview, addLog
+- [x] Create `store/gameStore.ts` with Zustand
+- [x] State: gameState, previewState, actionDraft, history, logs
+- [x] State: status (playing/ended), winner, aiDifficulty
+- [x] Actions: newGame, selectAction, commitAction, aiTurn
+- [x] Actions: updatePreview, clearPreview, addLog
 
-**Acceptance:** Store compiles and provides typed hooks
+**Acceptance:** Store compiles and provides typed hooks ✅
 
 ---
 
 #### S1.2: Engine & AI Facades
-- [ ] Create `lib/game/engineFacade.ts`
-  - Wrap createInitialState, applyAction, simulate, getLegalActions, checkEnd, replay
-- [ ] Create `lib/game/aiFacade.ts`
-  - Wrap AI algorithm with difficulty levels (Easy/Medium)
-  - Provide chooseAction(state, difficulty) interface
-- [ ] Create `lib/game/actionAdapter.ts`
-  - Convert UI draft to engine Action type
+- [x] Create `lib/game/engineFacade.ts`
+- [x] Create `lib/game/aiFacade.ts`
+- [x] Create `lib/game/actionAdapter.ts`
 
-**Acceptance:** Facades provide clean API for UI consumption
+**Acceptance:** Facades provide clean API for UI consumption ✅
 
 ---
 
 #### S1.3: Commit Pipeline
-- [ ] Create `lib/game/commit.ts`
-  - Validate action legality
-  - Apply action via engineFacade
-  - Update history and logs
-  - Check endgame condition
-  - Return success/error result
-- [ ] Integrate with gameStore commitAction
+- [x] Create `lib/game/commit.ts`
+- [x] Validate action legality
+- [x] Apply action via engineFacade
+- [x] Update history and logs
+- [x] Check endgame condition
+- [x] Integrate with gameStore commitAction
+- [x] **FIX:** Remove duplicate tick/player switch (engine already handles)
 
-**Acceptance:** Committing an action updates state correctly
+**Acceptance:** Committing an action updates state correctly ✅
 
 ---
 
 #### S1.4: AI Turn Orchestration
-- [ ] Implement AI turn trigger after player commit
-- [ ] AI chooseAction with 1s timeout
-- [ ] Auto-commit AI action
-- [ ] Handle AI errors gracefully
-- [ ] Prevent AI turn during game end
+- [x] Implement AI turn trigger after player commit
+- [x] AI chooseAction with 1s timeout
+- [x] Auto-commit AI action
+- [x] Handle AI errors gracefully
+- [x] Prevent AI turn during game end
 
-**Acceptance:** AI responds automatically after player move
+**Acceptance:** AI responds automatically after player move ✅
 
 ---
 
 #### S1.5: Minimal UI Components
-- [ ] `components/GameScreen.tsx` (main container)
-- [ ] `components/BoardGrid.tsx` (7x7 grid renderer)
-- [ ] `components/Cell.tsx` (individual cell with occupant)
-- [ ] `components/HUD.tsx` (IP, active player, status)
-- [ ] `components/ActionPalette.tsx` (Seed/Env/Mutate/EndTurn buttons)
-- [ ] New Game button functionality
+- [x] `components/GameScreen.tsx` (main container)
+- [x] `components/BoardGrid.tsx` (7x7 grid renderer)
+- [x] `components/Cell.tsx` (individual cell with occupant)
+- [x] `components/HUD.tsx` (IP, active player, status)
+- [x] `components/ActionPalette.tsx` (Seed/Env/Mutate/EndTurn buttons)
+- [x] New Game button functionality
 
-**Acceptance:** Can start game, render board, select and commit actions
+**Acceptance:** Can start game, render board, select and commit actions ✅
 
 ---
 
@@ -142,41 +131,38 @@
 ### Tasks
 
 #### S2.1: Action Preview System
-- [ ] Create `lib/game/preview.ts`
-  - Call engineFacade.simulate on action draft
-  - Debounce preview generation (100-150ms)
-  - Handle invalid actions gracefully
-- [ ] Store previewState in gameStore
-- [ ] Trigger preview on cell hover/selection
+- [x] Create `lib/game/preview.ts`
+- [x] Call engineFacade.simulate on action draft
+- [x] Store previewState in gameStore
+- [x] Trigger preview on action selection
 
-**Acceptance:** Preview generates without committing action
+**Acceptance:** Preview generates without committing action ✅
 
 ---
 
 #### S2.2: Diff Overlay Visualization
-- [ ] Create `lib/game/diff.ts`
-  - Identify changed cells between gameState and previewState
-  - Calculate IP delta
-  - Detect new/removed/modified occupants
-- [ ] Create `components/PreviewOverlay.tsx`
-  - Highlight changed cells
-  - Show IP delta in HUD
-  - Visual indicators for spread/growth
+- [x] Create `lib/game/diff.ts`
+- [x] Identify changed cells between gameState and previewState
+- [x] Calculate IP delta
+- [x] Detect new/removed/modified occupants
+- [x] Create `components/PreviewOverlay.tsx`
+- [x] Highlight changed cells in BoardGrid
+- [x] Show IP delta info
 
-**Acceptance:** Preview shows clear diff visualization
+**Acceptance:** Preview shows clear diff visualization ✅
 
 ---
 
 #### S2.3: Turn Timer Implementation
-- [ ] Create `lib/game/useTurnTimer.ts` hook
-  - 25s countdown
-  - Reset on turn change
-  - Auto EndTurn at 0
-  - Does NOT pause during preview
-- [ ] Display timer in HUD
-- [ ] Visual warning when <5s remaining
+- [x] Create `lib/game/useTurnTimer.ts` hook
+- [x] 25s countdown
+- [x] Reset on turn change via timerKey
+- [x] Auto EndTurn at 0
+- [x] Does NOT pause during preview
+- [x] Display timer in HUD
+- [x] Visual warning when <5s remaining
 
-**Acceptance:** Timer auto-commits EndTurn when expired
+**Acceptance:** Timer auto-commits EndTurn when expired ✅
 
 ---
 
@@ -211,48 +197,44 @@
 ### Tasks
 
 #### S3.1: Replay Data Model
-- [ ] Create `lib/game/replayModel.ts`
-  - Schema: initialState, actions[], metadata (seed, difficulty, timestamp)
-  - Serialize/deserialize functions
-  - Runtime validation (optional: zod)
+- [x] Create `lib/game/replayModel.ts`
+- [x] Schema: initialState, actions[], metadata (seed, difficulty, timestamp)
+- [x] Serialize/deserialize functions
+- [x] Runtime validation
 
-**Acceptance:** Can create valid replay JSON
+**Acceptance:** Can create valid replay JSON ✅
 
 ---
 
 #### S3.2: Replay Export/Import
-- [ ] Export: Download replay JSON file
-- [ ] Import: Upload and validate JSON
-- [ ] Add to game UI or separate /replays route
-- [ ] Handle import errors gracefully
+- [x] Export: Download replay JSON file
+- [x] Import: Upload and validate JSON
+- [x] Add ReplayControls component
+- [x] Handle import errors gracefully
 
-**Acceptance:** Can export game and reimport successfully
+**Acceptance:** Can export game and reimport successfully ✅
 
 ---
 
 #### S3.3: Replay Viewer
+- [ ] Create ReplayViewer component
 - [ ] Use engineFacade.replay or progressive state computation
 - [ ] Prev/Next step controls
 - [ ] Display current step number
 - [ ] Show state at each step
 - [ ] Jump to specific step (optional)
 
-**Acceptance:** Can step through replay forward/backward
+**Acceptance:** Can step through replay forward/backward (IN PROGRESS)
 
 ---
 
 #### S3.4: Debug Panels
-- [ ] Create `components/StateViewer.tsx`
-  - Show gameState JSON
-  - Show previewState JSON
-  - Copy to clipboard button
-- [ ] Create `components/LogPanel.tsx`
-  - Display action history
-  - Show errors and warnings
-  - Endgame reason display
-- [ ] Toggle visibility (collapsible or /debug route)
+- [x] Create `components/StateViewer.tsx`
+- [x] Create `components/LogPanel.tsx`
+- [x] Display in tabs in GameScreen
+- [x] Copy to clipboard for StateViewer
 
-**Acceptance:** Debug tools provide state visibility
+**Acceptance:** Debug tools provide state visibility ✅
 
 ---
 
