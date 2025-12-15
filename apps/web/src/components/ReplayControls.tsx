@@ -90,15 +90,13 @@ export const ReplayControls: React.FC = () => {
         <Separator className="bg-muted/50" />
 
         <div>
-          <label htmlFor="replay-import" className="cursor-pointer">
-            <Button
-              as="span"
-              variant="outline"
-              className="w-full"
-            >
-              📤 Import Replay
-            </Button>
-          </label>
+          <Button
+            onClick={() => document.getElementById('replay-import')?.click()}
+            variant="outline"
+            className="w-full"
+          >
+            📤 Import Replay
+          </Button>
           <Input
             id="replay-import"
             type="file"

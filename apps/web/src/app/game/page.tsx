@@ -1,11 +1,11 @@
 'use client';
 
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { GameScreen } from '../../components/GameScreen';
 import { useTutorialStore } from '@/store/tutorialStore';
 
-export default function GamePage() {
+function GamePageContent() {
   const searchParams = useSearchParams();
   const { startTutorial, active } = useTutorialStore();
 
@@ -20,4 +20,12 @@ export default function GamePage() {
   }, [searchParams, startTutorial, active]);
 
   return <GameScreen />;
+}
+
+export default function GamePage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+      <GamePageContent />
+    </Suspense>
+  );
 }

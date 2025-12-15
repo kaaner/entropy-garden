@@ -5,8 +5,9 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ['zustand'],
   },
-  // Enable standalone output for Docker
-  output: 'standalone',
+  // Disable standalone for Windows dev (symlink permission issues)
+  // Re-enable for Docker deployment
+  // output: 'standalone',
 }
 
 module.exports = nextConfig
