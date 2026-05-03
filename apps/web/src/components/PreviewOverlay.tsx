@@ -9,10 +9,7 @@ interface PreviewOverlayProps {
   previewState: GameState;
 }
 
-export const PreviewOverlay: React.FC<PreviewOverlayProps> = ({
-  gameState,
-  previewState,
-}) => {
+export const PreviewOverlay: React.FC<PreviewOverlayProps> = ({ gameState, previewState }) => {
   const diff = calculateDiff(gameState, previewState);
 
   return (
@@ -21,17 +18,20 @@ export const PreviewOverlay: React.FC<PreviewOverlayProps> = ({
         <span className="text-2xl">🔮</span>
         <h3 className="text-lg font-bold text-blue-300">Action Preview</h3>
       </div>
-      
+
       <div className="space-y-2">
         {diff.ipDelta !== 0 && (
           <div className="flex items-center justify-between bg-blue-900/50 p-2 rounded">
             <span className="text-sm text-blue-200">IP Change:</span>
-            <span className={`text-lg font-bold ${diff.ipDelta > 0 ? 'text-green-400' : 'text-red-400'}`}>
-              {diff.ipDelta > 0 ? '+' : ''}{diff.ipDelta}
+            <span
+              className={`text-lg font-bold ${diff.ipDelta > 0 ? 'text-green-400' : 'text-red-400'}`}
+            >
+              {diff.ipDelta > 0 ? '+' : ''}
+              {diff.ipDelta}
             </span>
           </div>
         )}
-        
+
         {diff.cells.length > 0 && (
           <div className="bg-blue-900/50 p-2 rounded">
             <p className="text-sm text-blue-200 mb-2">Changes: {diff.cells.length} cell(s)</p>
@@ -50,9 +50,9 @@ export const PreviewOverlay: React.FC<PreviewOverlayProps> = ({
           </div>
         )}
       </div>
-      
+
       <p className="text-xs text-blue-300 mt-3 italic">
-        Click "Commit" to apply or "Clear" to cancel
+        Click &quot;Commit&quot; to apply or &quot;Clear&quot; to cancel
       </p>
     </div>
   );
