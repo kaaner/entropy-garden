@@ -11,16 +11,12 @@ interface BoardGridProps {
   onCellClick?: (x: number, y: number) => void;
 }
 
-export const BoardGrid: React.FC<BoardGridProps> = ({
-  gameState,
-  previewState,
-  onCellClick
-}) => {
+export const BoardGrid: React.FC<BoardGridProps> = ({ gameState, previewState, onCellClick }) => {
   const changedCells = useMemo(() => {
     if (!gameState || !previewState) return new Set<string>();
-    
+
     const diff = calculateDiff(gameState, previewState);
-    return new Set(diff.cells.map(c => `${c.x}-${c.y}`));
+    return new Set(diff.cells.map((c) => `${c.x}-${c.y}`));
   }, [gameState, previewState]);
 
   if (!gameState) {
@@ -28,7 +24,7 @@ export const BoardGrid: React.FC<BoardGridProps> = ({
       <div className="aspect-square w-full max-w-2xl mx-auto border-2 border-dashed border-muted flex items-center justify-center rounded-xl bg-muted/20">
         <div className="text-center space-y-2">
           <div className="text-6xl">🌱</div>
-          <span className="text-muted-foreground">Click "New Game" to start</span>
+          <span className="text-muted-foreground">Click &quot;New Game&quot; to start</span>
         </div>
       </div>
     );
